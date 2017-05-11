@@ -210,7 +210,6 @@
  *   );
  * @endcode
  */
-$databases = array();
 
 /**
  * Access control for update.php script.
@@ -585,3 +584,17 @@ $env_include = array(
 if (isset($env_include[$_SERVER['HTTP_HOST']])) {
   require_once($env_include[$_SERVER['HTTP_HOST']]);
 }
+
+$databases = array (
+    'default' =>  array (    'default' =>
+        array (
+          'database' => 'uclalib',
+          'username' => 'uclalib',
+          'password' => 'uclalib',
+          'host' => '164.67.152.25',
+          'port' => '32774',
+          'driver' => 'mysql',
+          'prefix' => '',
+        ),
+    ),
+);
