@@ -25,33 +25,33 @@ function statsform_menu() {
     'description' => 'For statsform use',
   );
  
- 
   return $items;
 }
 
-function statsform_html_head_alter(&$head_elements) {
+//------------------------------------------------------
+/**
+ * Implements hook_theme().
+ */
+// function statsform_theme($existing, $type, $theme, $path) {
+//     return array(
+//         'hijack' => array(
+//             'template' => 'page--hijacked',
+//             'render element' => 'page',
+//             'path' => drupal_get_path('module', 'statsform') . '/templates',
+//         ),
+//     );
+// }
 
-  // Force the latest IE rendering engine and Google Chrome Frame.
-  $head_elements['chrome_frame'] = array(
-    '#type' => 'html_tag',
-    '#tag' => 'meta',
-    '#attributes' => array('http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge,chrome=1'),
-  );
-}
-
-function hook_page_alter(&$page) {
-  // Add help text to the user login block.
-  $page['sidebar_first']['user_login']['help'] = array(
-    '#weight' => -10,
-    '#markup' => t('To post comments or add new content, you first have to log in.'),
-  );
-}
+/**
+ * Implements hook_page_alter().
+ */
+// function statsform_page_alter(&$page) {
+//     $page['#theme'] = 'hijack';
+// }
+//-------------------------------------------------------
 
 function statsform_form($form, &$form_state) {
-    
-      
-
- 
+  
   $form['home'] = array(
         '#type' => 'item',
 
@@ -72,11 +72,9 @@ function statsform_form($form, &$form_state) {
         <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
         <script src="../js/javascript.js"></script>
 
-
         <!-- Google Font Montserrat --> 
 
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">   
-
 
     </head>
     <body>
@@ -116,12 +114,11 @@ function statsform_form($form, &$form_state) {
         <img class ="img-responsive" src="../img/Statsform_Stock_Photos/clicc.jpg"></div>
     </div>
 
-
     <div class="row">
         <div class="four wide column">
             <img class ="img-responsive" src="../img/Statsform_Stock_Photos/books.jpg">
         </div>
-        <a class="four wide column" href="references" id="AL"><div class="verticalalign"> ARTS LIBRARY</div></a>
+        <a class="four wide column" href="references" id="AL"><div class="verticalalign"> ARTS LIBRARY </div></a>
         <div class="four wide column">
             <img class ="img-responsive" src="../img/Statsform_Stock_Photos/DAY3_SHOT5_YOUNGLIBRARY-2192_r_cmyk.jpg">
         </div>
@@ -133,7 +130,7 @@ function statsform_form($form, &$form_state) {
         
         ',
     );
-       $form['test'] = array(
+      $form['test'] = array(
     '#type'  => 'checkboxes',
     '#options' => drupal_map_assoc(  array( t('Test - checking this checkbox allows deletion of an expired reservation before 24 hours has passed') )  ),
   );
@@ -148,10 +145,6 @@ function statsform_form($form, &$form_state) {
 }
 
 function statsform_references($form, &$form_state) {
-    
-  krumo($form_state['home']);
-  krumo($form_state['values']);
- 
  
   $form['ref'] = array(
         '#type' => 'item',
@@ -199,7 +192,6 @@ function statsform_references($form, &$form_state) {
 
     <!-- Content -->
 
-
     <div class="ui equal width center aligned grid">
 
 <div class = "eight wide column" id="sec1"  >
@@ -233,18 +225,14 @@ function statsform_references($form, &$form_state) {
 
 </body>
 </html>
-        
         ',
         
     );
      
- 
   return $form;
 }
 
 function statsform_mockup($form, &$form_state) {
-  
-  krumo($form_state['values']);
  
   $form['test'] = array(
         '#type' => 'item',
@@ -432,13 +420,8 @@ function statsform_mockup($form, &$form_state) {
                     </div>
                 </div>
 
-
             </div>
         </div>
-
-
-
-
 
         <!-- Referral Section -->
         <div class="title">
@@ -645,12 +628,9 @@ function statsform_mockup($form, &$form_state) {
             </div>
         </form>
     </div>
-            
-
 
 </div>
 </div>
-
 
 <!--<div class="eight wide column">
     <form class="ui form">
@@ -802,16 +782,10 @@ function statsform_mockup($form, &$form_state) {
 
 </body>
 </html>
-        
-        
-
-        
         ',
     );
   return $form;
 }
-
-
 
 /**
  * Returns the form for the second page of form_example_tutorial_8().
@@ -845,7 +819,6 @@ function statsform_form_page_two($form, &$form_state) {
   );
   return $form;
 }
-
 
 /**
  * Validate handler for the next button on first page.
@@ -928,7 +901,7 @@ function statsform_form_page_two_submit($form, &$form_state) {
     ));
   }
   drupal_set_message(t('And the favorite color is @color', array('@color' => $form_state['values']['color'])));
-
+  
   // If we wanted to redirect on submission, set $form_state['redirect']. For
   // simple redirects, the value can be a string of the path to redirect to. For
   // example, to redirect to /node, one would specify the following:
