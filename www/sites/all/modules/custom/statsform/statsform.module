@@ -46,7 +46,6 @@ function statsform_theme($existing, $type, $theme, $path) {
  * Implements hook_page_alter().
  */
 function statsform_page_alter(&$page) {
-    krumo(arg(0));
     if (arg(0) == 'statsform') {
         $page['#theme'] = 'hijack'; 
   }
