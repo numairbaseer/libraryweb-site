@@ -28,27 +28,30 @@ function statsform_menu() {
   return $items;
 }
 
-//------------------------------------------------------
+//=============================================================================
 /**
  * Implements hook_theme().
  */
-// function statsform_theme($existing, $type, $theme, $path) {
-//     return array(
-//         'hijack' => array(
-//             'template' => 'page--hijacked',
-//             'render element' => 'page',
-//             'path' => drupal_get_path('module', 'statsform') . '/templates',
-//         ),
-//     );
-// }
+function statsform_theme($existing, $type, $theme, $path) {
+    return array(
+        'hijack' => array(
+            'template' => 'page--hijacked',
+            'render element' => 'page',
+            'path' => drupal_get_path('module', 'statsform') . '/templates',
+        ),
+    );
+}
 
 /**
  * Implements hook_page_alter().
  */
-// function statsform_page_alter(&$page) {
-//     $page['#theme'] = 'hijack';
-// }
-//-------------------------------------------------------
+function statsform_page_alter(&$page) {
+    krumo(arg(0));
+    if (arg(0) == 'statsform') {
+        $page['#theme'] = 'hijack'; 
+  }
+}
+//=============================================================================
 
 function statsform_form($form, &$form_state) {
   
@@ -239,7 +242,7 @@ function statsform_mockup($form, &$form_state) {
         '#markup' => '
 <html>
 <head>
-    <title>Mockup</title>
+    <title>Stats Redesign Project</title>
 
     <!-- Include meta tag to ensure proper rendering and touch zooming -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
