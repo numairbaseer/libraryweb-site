@@ -1,31 +1,30 @@
 <?php
 
 function statsform_menu() {
-  $items = array();
+        $items = array();
   
-  $items['statsform/form'] = array(
-    'title' => 'Stats Form',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('statsform_form'),
-    'access callback' => TRUE,
-    'description' => 'For statsform use',
-  );
-  $items['statsform/references'] = array(
-    'title' => 'Stats Form',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('statsform_references'),
-    'access callback' => TRUE,
-    'description' => 'For statsform use',
-  );
-  $items['statsform/mockup'] = array(
-    'title' => 'Stats Form',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('statsform_mockup'),
-    'access callback' => TRUE,
-    'description' => 'For statsform use',
-  );
- 
-  return $items;
+        $items['statsform/form'] = array(
+            'title' => 'Stats Form',
+            'page callback' => 'drupal_get_form',
+            'page arguments' => array('statsform_form'),
+            'access callback' => TRUE,
+            'description' => 'For statsform use',
+        );
+         $items['statsform/references'] = array(
+            'title' => 'Stats Form',
+            'page callback' => 'drupal_get_form',
+            'page arguments' => array('statsform_references'),
+            'access callback' => TRUE,
+            'description' => 'For statsform use',
+         );
+         $items['statsform/mockup'] = array(
+             'title' => 'Stats Form',
+             'page callback' => 'drupal_get_form',
+             'page arguments' => array('statsform_mockup'),
+             'access callback' => TRUE,
+             'description' => 'For statsform use',
+        );
+        return $items;
 }
 
 //=============================================================================
@@ -53,97 +52,124 @@ function statsform_page_alter(&$page) {
 //=============================================================================
 
 function statsform_form($form, &$form_state) {
+    global $user;
+    $flag = 0;
+
+    if (in_array('administrator', $user->roles)) // Can add more roles to this check
+        $flag = 1;
+    
+    if ($flag == 1) {
   
-  $form['home'] = array(
-        '#type' => 'item',
-
-        '#markup' => '
-        
-<html>
-    <head>
-        <title>Stats Redesign Project</title>
-
-        <!-- JQuery -->
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
-
-        <!-- Semantic UI -->
-        <link rel="stylesheet" type="text/css" href="../semantic/semantic.min.css">
-        <script src="../semantic/semantic.min.js"></script>
-
-        <!-- Personally Defined CSS/Javascript -->
-        <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
-        <script src="../js/javascript.js"></script>
-
-        <!-- Google Font Montserrat --> 
-
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">   
-
-    </head>
-    <body>
-
-        <!-- Menu -->
-        <div class="ui secondary inverted menu">
-            <div class="ui huge breadcrumb">
-                <div class="active section" >
+      $form['home'] = array(
+            '#type' => 'item',
+    
+            '#markup' => '
+            
+    <html>
+        <head>
+            <title>Stats Redesign Project</title>
+    
+            <!-- JQuery -->
+            <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+    
+            <!-- Semantic UI -->
+            <link rel="stylesheet" type="text/css" href="../semantic/semantic.min.css">
+            <script src="../semantic/semantic.min.js"></script>
+    
+            <!-- Personally Defined CSS/Javascript -->
+            <link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
+            <script src="../js/javascript.js"></script>
+    
+            <!-- Google Font Montserrat --> 
+    
+            <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">   
+    
+        </head>
+        <body>
+    
+            <!-- Menu -->
+            <div class="ui secondary inverted menu">
+                <div class="ui huge breadcrumb">
+                    <div class="active section" >
+                        <a class="item">
+                            Home
+                        </a>
+                    </div>
+                </div>
+                <div class="right menu">
                     <a class="item">
-                        Home
+                        Login
                     </a>
                 </div>
             </div>
-            <div class="right menu">
-                <a class="item">
-                    Login
-                </a>
+    
+            <!-- Content -->
+            <div class="ui equal width height center aligned grid">
+             <div class="row">
+              <a class="six wide column" href="references" id="YRL"> <div class="verticalalign"> YOUNG RESEARCH LIBRARY</div></a>
+              <div class="four wide column">
+                <img class ="img-responsive" src="../img/Statsform_Stock_Photos/powellnight.jpg">
             </div>
+            <a class="six wide column" href="references" id="BL"> <div class="verticalalign"> BIOMEDICAL LIBRARY </div> </a>
         </div>
-
-        <!-- Content -->
-        <div class="ui equal width height center aligned grid">
-         <div class="row">
-          <a class="six wide column" href="references" id="YRL"> <div class="verticalalign"> YOUNG RESEARCH LIBRARY</div></a>
-          <div class="four wide column">
-            <img class ="img-responsive" src="../img/Statsform_Stock_Photos/powellnight.jpg">
+    
+        <div class="row">
+            <div class="four wide column"> <div align="left">
+               <img class ="img-responsive" src="../img/Statsform_Stock_Photos/powellstudent.jpg"></div>
+           </div>
+           <a class="seven wide column" href="references" id = "POWELL"> <div class="verticalalign">POWELL LIBRARY</div></a> 
+           <div class="five wide column">
+            <img class ="img-responsive" src="../img/Statsform_Stock_Photos/clicc.jpg"></div>
         </div>
-        <a class="six wide column" href="references" id="BL"> <div class="verticalalign"> BIOMEDICAL LIBRARY </div> </a>
-    </div>
-
-    <div class="row">
-        <div class="four wide column"> <div align="left">
-           <img class ="img-responsive" src="../img/Statsform_Stock_Photos/powellstudent.jpg"></div>
-       </div>
-       <a class="seven wide column" href="references" id = "POWELL"> <div class="verticalalign">POWELL LIBRARY</div></a> 
-       <div class="five wide column">
-        <img class ="img-responsive" src="../img/Statsform_Stock_Photos/clicc.jpg"></div>
-    </div>
-
-    <div class="row">
-        <div class="four wide column">
-            <img class ="img-responsive" src="../img/Statsform_Stock_Photos/books.jpg">
+    
+        <div class="row">
+            <div class="four wide column">
+                <img class ="img-responsive" src="../img/Statsform_Stock_Photos/books.jpg">
+            </div>
+            <a class="four wide column" href="references" id="AL"><div class="verticalalign"> ARTS LIBRARY </div></a>
+            <div class="four wide column">
+                <img class ="img-responsive" src="../img/Statsform_Stock_Photos/DAY3_SHOT5_YOUNGLIBRARY-2192_r_cmyk.jpg">
+            </div>
+            <a class="four wide column" href="references" id="ML"><div class="verticalalign">MUSIC LIBRARY</div></a>
         </div>
-        <a class="four wide column" href="references" id="AL"><div class="verticalalign"> ARTS LIBRARY </div></a>
-        <div class="four wide column">
-            <img class ="img-responsive" src="../img/Statsform_Stock_Photos/DAY3_SHOT5_YOUNGLIBRARY-2192_r_cmyk.jpg">
-        </div>
-        <a class="four wide column" href="references" id="ML"><div class="verticalalign">MUSIC LIBRARY</div></a>
-    </div>
-</div>    
-</body>
-</html>
-        
-        ',
-    );
-      $form['test'] = array(
-    '#type'  => 'checkboxes',
-    '#options' => drupal_map_assoc(  array( t('Test - checking this checkbox allows deletion of an expired reservation before 24 hours has passed') )  ),
-  );
+    </div>    
+    </body>
+    </html>
+            
+            ',
+        );
+          $form['test'] = array(
+        '#type'  => 'checkboxes',
+        '#options' => drupal_map_assoc(  array( t('Test - checking this checkbox allows deletion of an expired reservation before 24 hours has passed') )  ),
+      );
+    
+      $form['next'] = array(
+        '#type'  => 'submit',
+        '#value' => t('Start'),
+        '#submit' => array('rc_res_form_page_one_handler_submit'),
+      );
+       
+      return $form;
+    }
+    
+    else {
 
-  $form['next'] = array(
-    '#type'  => 'submit',
-    '#value' => t('Start'),
-    '#submit' => array('rc_res_form_page_one_handler_submit'),
-  );
-   
-  return $form;
+     $form['home'] = array(
+            '#type' => 'item',
+    
+            '#markup' => '
+            
+    <html>
+        <body>
+            <h1>Contact Your Supervisor</h1>   
+        </body>
+    </html>
+            
+            ',
+        );
+
+      return $form;
+    }
 }
 
 function statsform_references($form, &$form_state) {
